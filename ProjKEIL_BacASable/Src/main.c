@@ -63,24 +63,30 @@ USART1->CR2|=2<<USART_CR2_STOP_Pos;	*/
 	//clock enabled
   RCC -> APB2ENR |= RCC_APB2ENR_IOPCEN ; 
 	
-	//pc8
+	// config for pc8
 	GPIOC -> CRH &= ~GPIO_CRH_MODE8 ; //on met en input mode 
 	GPIOC -> CRH &= ~GPIO_CRH_CNF8 ;
 	GPIOC -> CRH |= 1<<GPIO_CRH_CNF8_Pos ; 
 	
-	//pc10
+	//config for pc10
 	GPIOC -> CRH &= ~GPIO_CRH_MODE10 ; //on met en output mode 
 	GPIOC -> CRH |= 1<<GPIO_CRH_MODE10_Pos ; 
 	GPIOC -> CRH &= ~GPIO_CRH_CNF10 ; 
-	GPIOC -> CRH |= 0<<GPIO_CRH_CNF10_Pos ; 
+	GPIOC -> CRH |= 1<<GPIO_CRH_CNF10_Pos ;
 	
+	/*config push-pull led pc10
+	GPIOC -> CRH &= ~GPIO_CRH_CNF10 ; 
+	GPIOC -> CRH |= 0<<GPIO_CRH_CNF10_Pos ; */
 	
-	
-	
+	//GPIOC -> ODR |= GPIO_ODR_ODR10_Msk ; 
 	
   /* Infinite loop */
   while (1)
   {
+		if ((GPIOC -> IDR) & (1<<8))
+			GPIOC -> ODR |= 1 << GPIO_ODR_ODR10_Pos ; 
+		else 
+			GPIOC -> ODR &= ~ (1<< GPIO_ODR_ODR10_Pos)  ;
   }
 }
 

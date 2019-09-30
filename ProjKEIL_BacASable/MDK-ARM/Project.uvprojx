@@ -459,6 +459,9 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>New Group</GroupName>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -914,6 +917,9 @@
               <FilePath>startup_stm32f103xb.s</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>New Group</GroupName>
         </Group>
         <Group>
           <GroupName>::CMSIS</GroupName>
